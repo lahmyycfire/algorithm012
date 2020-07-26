@@ -1,0 +1,20 @@
+from typing import List
+
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+
+        def backf(nums, tmp):
+            if not nums:
+                res.append(tmp)
+                return
+            for i in range(len(nums)):
+                backf(nums[:i] + nums[i+1:], tmp + [nums[i]])
+
+        backf(nums, [])
+        return res
+
+
+s = Solution()
+print(s.permute([1,2,3,4]))
